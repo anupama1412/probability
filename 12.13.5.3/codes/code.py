@@ -6,7 +6,6 @@ from scipy.stats import binom
 n = 10  # Number of trials
 p = 0.05  # Probability of success
 
-# Generate the probability mass function (PMF) for various values of k (number of successes)
 p0 = binom.pmf(0, n, p)
 p1 = binom.pmf(1, n, p)
 
