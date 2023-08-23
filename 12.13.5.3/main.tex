@@ -112,6 +112,25 @@ columns=fullflexible
 There are 5\% defective items in a large bulk of items. What is the probability that a sample of 10 items will include not more than one defective item?
 
 \solution
+
+Let 
+\begin{align}
+	 X =
+	\begin{cases}
+		1, & \text{sample contains 1 defective item}\\ 
+		0, & \text{sample contains no defective item}
+	\end{cases}
+\end{align}
+Then  
+\begin{align}
+               p_X\brak{1} &= \frac{5}{100}\\
+               &= 0.05\\
+               p_X\brak{0} &= 1-p_X\brak{1}\\
+               &=1-\frac{5}{100}\\
+               &=\frac{95}{100}\\
+               &= 0.95
+\end{align}
+
 We use binomial distribution to solve this question, whose formula is given by
 \[
 P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k}
