@@ -126,39 +126,33 @@ Then
                p_X\brak{1} &= \frac{5}{100}\\
                &= 0.05\\
                p_X\brak{0} &= 1-p_X\brak{1}\\
-               &=1-\frac{5}{100}\\
-               &=\frac{95}{100}\\
                &= 0.95
 \end{align}
 
 We use binomial distribution to solve this question, whose formula is given by
 \[
-\pr{X=k} = \binom{n}{k} p^k (1 - p)^{n - k}
+p_X\brak{k} = \binom{n}{k} p^k (1 - p)^{n - k}
 \]
 where $n$ is the number of trials, $k$ is the number of successful outcomes, and $p$ is the probability of single successful outcome
 
-As defective rate is 5\%,
-$p = 0.05$
-We need to find the probability of having 0 or 1 defective items in a sample of 10.
+Here, $p = 0.05$ and $q = 0.95$
+The CDF of binomial is given by
+\begin{equation}
+	\pr{X \leq n} =
+	\begin{cases}
+		0, & n < 0\\ 
+		\sum_{k=0}^n \binom{10}{k} p^k q^{10-k}, & 0 \leq n \leq 10\\
+		1, & \text{otherwise}
+	\end{cases}
+\end{equation}
 
-For k = 0;
+Here, the desired probability is \pr{X \leq 1}
+Hence,
 \begin{align}
-        \pr{X=0}&= \binom{10}{0}* 0.05^0 *(1 - 0.05)^{10 - 0}\\
-        &= 1*1*0.95^{10}\\
-        &= 0.5987
-\end{align}
-
-For k = 1;
-\begin{align}
-        \pr{X=1}&= \binom{10}{1}* 0.05^1 *(1 - 0.05)^{10 - 1}\\
-        &= 10*0.05*0.95^9\\
-        &= 0.3151
-\end{align}
-
-To find the probability of event E which is not having more than 1 defective item, we sum the probabilities of having 0 or 1 defective items.
-\begin{align}
-        \pr{E}&= \pr{X=0} + \pr{X=1}\\
-        &= 0.5987 + 0.3151\\
-        &= 0.9138
+	\pr{X \leq 1} &= \sum_{k=0}^1 \binom{10}{k} p^k q^{10-k}\\
+	&= \binom{10}{0} p^0 q^{10-0} + \binom{10}{1} p^1 q^{10-1}\\
+	&= 1 (0.05)^0 (0.95)^{10} + 10 (0.05) (0.95)^9\\
+	&= 0.5987 + 0.3151\\
+	&= 0.9138
 \end{align}
 \end{document}
