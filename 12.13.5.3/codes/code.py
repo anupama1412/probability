@@ -1,15 +1,19 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy.stats import bernoulli
+from scipy.stats import norm
 from scipy.stats import binom
 
-# Parameters for the binomial distribution
-n = 10  # Number of trials
-p = 0.05  # Probability of success
+#Number of items
+n = 10 
+#Probability of a defective item
+p = 0.05
+#k is the possible number of defective items
+k_values = list(range(n+1))
+#y gives the probability values for each of the values of k
+y = binom.pmf(k_values,n,p)
+z=y[0]+y[1]
+print(z)   #printing the probability of the number of defective item being atmost 1
 
-p0 = binom.pmf(0, n, p)
-p1 = binom.pmf(1, n, p)
 
-print(f'P(X = 0) =', p0)
-print(f'P(X = 1) =', p1)
 
-print('Total probability =', p0+p1)
