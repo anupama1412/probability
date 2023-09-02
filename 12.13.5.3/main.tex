@@ -129,7 +129,6 @@ There are 5\% defective items in a large bulk of items. What is the probability 
 
 \solution
 
-We define random variable X as shown in table 1
 \begin{table}[!ht]
 \centering
 \input{tables/table.tex}
@@ -137,34 +136,17 @@ We define random variable X as shown in table 1
 \label{tab:ncert/12/13/5/3/}
 \end{table}
 
-Then  
-\begin{align}
-               p_X\brak{1} &= \frac{5}{100}\\
-               &= 0.05\\
-               p_X\brak{0} &= 1-p_X\brak{1}\\
-               &= 0.95
-\end{align}
-
-We use binomial distribution to solve this question, whose formula is given by
-\[
-p_X\brak{k} = \comb{n}{k} p^k (1 - p)^{n - k}
-\]
-
-Here, $p = 0.05$ and $q = 0.95$
-The CDF of binomial is given by
-\begin{equation}
-	\pr{X \leq n} =
-	\begin{cases}
-		0, & n < 0\\ 
-		\sum_{k=0}^n \comb{10}{k} p^k q^{10-k}, & 0 \leq n \leq 10\\
-		1, & \text{otherwise}
-	\end{cases}
-\end{equation}
-
-Here, the desired probability is \pr{X \leq 1}
-Hence,
-\begin{align}
-	\pr{X \leq 1} &= \sum_{k=0}^1 \comb{10}{k} p^k q^{10-k}\\
-	&= 0.9138
-\end{align}
+The pmf of $Y$ is given by
+    \begin{align}
+        Y \sim \textrm{Bin}\brak{n,p}
+    \end{align}    
+    \begin{align}
+        p_Y\brak{n} &= \Pr(Y \leq n) \\
+                    &= \sum_{k=0}^n\comb{10}{k}p^k\brak{1-p}^{10-k}
+    \end{align}
+  We require $\Pr(Y \leq 1)$. Since $n = 10$,
+             \begin{align}
+                \Pr(Y \leq 1) &=  \sum_{k=0}^1\comb{10}{k}(0.05)^k\brak{0.95}^{10-k} \\
+                           &= 0.9138 
+             \end{align} 
 \end{document}
