@@ -141,12 +141,13 @@ The pmf of $Y$ is given by
         Y \sim \textrm{Bin}\brak{n,p}
     \end{align}    
     \begin{align}
-        p_Y\brak{n} &= \Pr(Y \leq n) \\
+        F_Y\brak{n} &= \Pr(Y \leq n) \\
                     &= \sum_{k=0}^n\comb{10}{k}p^k\brak{1-p}^{10-k}
     \end{align}
-  We require $\Pr(Y \leq 1)$. Since $n = 10$,
+  We require $\Pr(Y \leq 1)$. Since $n = 1$,
              \begin{align}
-                \Pr(Y \leq 1) &=  \sum_{k=0}^1\comb{10}{k}(0.05)^k\brak{0.95}^{10-k} \\
+                F_Y\brak{1} &= \Pr(Y \leq 1) \\
+                &=  \sum_{k=0}^1\comb{10}{k}(0.05)^k\brak{0.95}^{10-k} \\
                            &= 0.9138 
              \end{align} 
 \end{document}
