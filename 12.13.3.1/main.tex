@@ -90,32 +90,93 @@ Let X, Y and Z be random variables with definition given as under:
     \hline
     $Z$ & Sum of the numbers appearing on the dice\\
     \hline
+    $W$ & Difference of the numbers appearing on the dice\\
+    \hline
 \end{tabular}
 \label{tab:ncert/12/13/3/1/}
 \caption{Definition of Random variables.}
 \end{table}
 
-Let A be the event $X = Y$
-
-$A = ((1,1), (2,2), (3,3), (4,4), (5,5), (6,6))$
-
-We know,
 \begin{align}
-\Pr(A) &= \sum_{k=0}^6{\Pr(k)}^2 \\
-&= 0.2 \times 0.2 + 0.2 \times 0.2 + 0.1 \times 0.1 + 0.3 \times 0.3 + 0.1 \times 0.1 + 0.1 \times 0.1\\
-&= 0.2
+W &= X-Y
+\end{align}
+$W$ can take values ranging from \{-5 to 5\}.
+\begin{align}
+p_X(k) &= 
+	\begin{cases}
+		0.2, & k = 1,2 \\
+		0.1, & k = 3,5,6 \\
+		0.3, & k = 4
+	\end{cases}\\
+	p_X(k) &= p_Y(k) 
+\end{align}
+PMF of $W$ using $z$-transform:
+
+applying the z-transform on both the sides
+\begin{align}
+	z\{W\} &= z\{X-Y\}\\
+	M_W(z) &= M_{X-Y}(z)
+\end{align}
+Using the expectation operator:
+\begin{align}
+	E[z^{-W}] &= E[z^{-X+Y}]\\
+	&= E[z^{-X}]\cdot E[z^{Y}]\\
+	&= \brak{\sum^6_{i=1}p_X(i)\cdot z^{-i}}\cdot\brak{\sum^6_{j=1}p_Y(j)\cdot z^{j}}
+\end{align}
+Extracting the PMF by considering the defenition of z-transform
+\begin{align}
+	M_W(z) &= p_W(0) +p_W(1)z + ... + p_W(k)z^k + ...\\
+	&= 0.01(2z^{-5}+4z^{-4}+9z^{-3}+12z^{-2}+13z^{-1}+20\nonumber\\&\qquad+13z^{1}+12z^{2}+9z^{3}+4z^{4}+2z^{5})
+\end{align}
+defined for all the values of $-5 \leq k\leq 5$
+\begin{align}
+	p_W(k) &= \frac{1}{k!}\brak{\frac{d^{|k|}}{dz^{|k|}}M_W(z)}_{z=0}
 \end{align}
 
-Let B be the event $Z \geq 10$
+Now,
 
-$B = ((4,6), (5,5), (6,4), (5,6), (6,5), (6,6))$
-
-We know,
 \begin{align}
-\Pr(Z=n) &= \sum_{k=(n-6)}^6\Pr(k)\Pr(n-k)\\
-\implies \Pr(Z=10) &= 0.07\\
-\implies \Pr(Z=11) &= 0.02\\
-\implies \Pr(Z=12) &= 0.01
+Z &= X+Y
+\end{align}
+$Z$ can take values ranging from \{2 to 12\}.
+
+PMF of $Z$ using $z$-transform:
+
+applying the z-transform on both the sides
+\begin{align}
+	z\{Z\} &= z\{X+Y\}\\
+	M_Z(z) &= M_{X+Y}(z)
+\end{align}
+Using the expectation operator:
+\begin{align}
+	E[z^{-Z}] &= E[z^{-X-Y}]\\
+	&= E[z^{-X}]\cdot E[z^{-Y}]\\
+	&= \brak{\sum^6_{i=1}p_X(i)\cdot z^{-i}}^2
+\end{align}
+Extracting the PMF by considering the defenition of z-transform
+\begin{align}
+	M_W(z) &= p_W(0) +p_W(1)z + ... + p_W(k)z^k + ...\\
+	&= (0.1z^{-6}+0.1z^{-5}+0.3z^{-4}+0.1z^{-3}+0.2z^{-2}+0.2z^{-1})^2
+\end{align}
+defined for all the values of $2 \leq k\leq 12$
+\begin{align}
+	p_W(k) &= \frac{1}{k!}\brak{\frac{d^{|k|}}{dz^{|k|}}M_W(z)}_{z=0}
+\end{align}
+
+For event A,
+
+Finding the probability for $W = 0$
+\begin{align}
+	p_W(0) &= 0.2 
+\end{align}
+
+For event B,
+
+Finding the probability for $Z \geq 10$
+\begin{align}
+p_Z(10) &= 0.07\\
+p_Z(11) &= 0.02\\
+p_Z(12) &= 0.01
 \end{align}
 
 Hence,
@@ -128,7 +189,6 @@ Now, A and B will be independent if,
 
 \begin{align}
 \Pr(A \cap B) &= \Pr(A)\Pr(B)\\
-A \cap B &= ((5,5), (6,6)) \\
 \Pr(A \cap B) &= 0.1 \times 0.1 + 0.1 \times 0.1\\
 &= 0.02\\
 &= \Pr(A)\Pr(B)
