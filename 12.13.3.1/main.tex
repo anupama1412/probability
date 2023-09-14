@@ -1,6 +1,7 @@
 \documentclass[]{article}
 \usepackage{amsfonts, amssymb, amsmath}
 \usepackage{float}
+\usepackage{graphicx}
 
 \title{Question 12.13.3.1}
 \author{Anupama Kulshreshtha \\ EE22BTECH11009}
@@ -79,7 +80,6 @@ The die is thrown two times. Let A and B be the events, 'same number each time',
 
 \solution
 Let X, Y and Z be random variables with definition given as under:
-
 \begin{table}[H]
 \centering
 \begin{tabular}{|c|c|}
@@ -98,10 +98,6 @@ Let X, Y and Z be random variables with definition given as under:
 \end{table}
 
 \begin{align}
-W &= X-Y
-\end{align}
-$W$ can take values ranging from \{-5 to 5\}.
-\begin{align}
 p_X(k) &= 
 	\begin{cases}
 		0.2, & k = 1,2 \\
@@ -110,17 +106,19 @@ p_X(k) &=
 	\end{cases}\\
 	p_X(k) &= p_Y(k) 
 \end{align}
+$z$ transform using expectation:
+\begin{align}
+X(z) = E\sbrak{X^2} &= \sum_{k=0}^{\infty}x(k)\cdot z^{-k}
+\end{align}
 PMF of $W$ using $z$-transform:
-
 applying the z-transform on both the sides
 \begin{align}
-	z\{W\} &= z\{X-Y\}\\
+	W &= X-Y\\
 	M_W(z) &= M_{X-Y}(z)
 \end{align}
 Using the expectation operator:
 \begin{align}
-	E[z^{-W}] &= E[z^{-X+Y}]\\
-	&= E[z^{-X}]\cdot E[z^{Y}]\\
+	E\sbrak{z^{-W}} &= E\sbrak{z^{-X+Y}}\\
 	&= \brak{\sum^6_{i=1}p_X(i)\cdot z^{-i}}\cdot\brak{\sum^6_{j=1}p_Y(j)\cdot z^{j}}
 \end{align}
 Extracting the PMF by considering the defenition of z-transform
@@ -129,19 +127,14 @@ Extracting the PMF by considering the defenition of z-transform
 	&= 0.01(2z^{-5}+4z^{-4}+9z^{-3}+12z^{-2}+13z^{-1}+20\nonumber\\&\qquad+13z^{1}+12z^{2}+9z^{3}+4z^{4}+2z^{5})
 \end{align}
 defined for all the values of $-5 \leq k\leq 5$
-\begin{align}
-	p_W(k) &= \frac{1}{k!}\brak{\frac{d^{|k|}}{dz^{|k|}}M_W(z)}_{z=0}
-\end{align}
 
 Now,
-
 \begin{align}
 Z &= X+Y
 \end{align}
 $Z$ can take values ranging from \{2 to 12\}.
 
 PMF of $Z$ using $z$-transform:
-
 applying the z-transform on both the sides
 \begin{align}
 	z\{Z\} &= z\{X+Y\}\\
@@ -149,30 +142,23 @@ applying the z-transform on both the sides
 \end{align}
 Using the expectation operator:
 \begin{align}
-	E[z^{-Z}] &= E[z^{-X-Y}]\\
-	&= E[z^{-X}]\cdot E[z^{-Y}]\\
+	E\sbrak{z^{-Z}} &= E\sbrak{z^{-X-Y}}\\
 	&= \brak{\sum^6_{i=1}p_X(i)\cdot z^{-i}}^2
 \end{align}
 Extracting the PMF by considering the defenition of z-transform
 \begin{align}
-	M_W(z) &= p_W(0) +p_W(1)z + ... + p_W(k)z^k + ...\\
-	&= (0.1z^{-6}+0.1z^{-5}+0.3z^{-4}+0.1z^{-3}+0.2z^{-2}+0.2z^{-1})^2
+	M_W(z) &= (0.1z^{-6}+0.1z^{-5}+0.3z^{-4}+0.1z^{-3}+0.2z^{-2}+0.2z^{-1})^2
 \end{align}
 defined for all the values of $2 \leq k\leq 12$
-\begin{align}
-	p_W(k) &= \frac{1}{k!}\brak{\frac{d^{|k|}}{dz^{|k|}}M_W(z)}_{z=0}
-\end{align}
 
 For event A,
-
 Finding the probability for $W = 0$
 \begin{align}
 	p_W(0) &= 0.2 
 \end{align}
 
 For event B,
-
-Finding the probability for $Z \geq 10$
+Finding the probability for $Z\geq 10$
 \begin{align}
 p_Z(10) &= 0.07\\
 p_Z(11) &= 0.02\\
@@ -186,14 +172,18 @@ Hence,
 \end{align}
 
 Now, A and B will be independent if,
-
 \begin{align}
-\Pr(A \cap B) &= \Pr(A)\Pr(B)\\
-\Pr(A \cap B) &= 0.1 \times 0.1 + 0.1 \times 0.1\\
+\Pr(AB) &= \Pr(A)\Pr(B)\\
+AB &= ((5,5), (6,6)) \\
+\Pr(AB) &= 0.1 \times 0.1 + 0.1 \times 0.1\\
 &= 0.02\\
 &= \Pr(A)\Pr(B)
 \end{align}
-
 Hence, events A and B are independent.
+\begin{figure}
+\includegraphics[width=\columnwidth]{./figs/fig.png}
+\caption{Stem plot for P(Z)}
+\label{fig:exemplar/12/13/3/1/}
+\end{figure}
 \end{document}
 
