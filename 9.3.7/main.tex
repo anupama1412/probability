@@ -85,11 +85,28 @@ that a sample of 10 items will include not more than one defective item?
     \hline
     $p$ & 0.05 & Probability of being defective\\
     \hline
+    $X$ & 1 if defective & Bernoulli Random Variable\\
+    {} & 0 if not defective & {}\\
+    \hline
+    $Y$ & $\sum_{i=1}^nX_i$ & Binomial Random Variable\\
+    \hline
 \end{tabular}
 \caption{Definition of parameters.}
 \label{tab:gaussian/9/3/7}
 \end{table}
-
+The cdf using binomial is given by  
+\begin{align}
+	F_Y\brak{n} &= \Pr(Y \leq n) \\
+        &= \sum_{k=0}^n\comb{10}{k}p^k\brak{1-p}^{10-k}
+\end{align}
+We require $\Pr(Y \leq 1)$. Since $n = 1$,
+\begin{align}
+	F_Y\brak{1} &= \Pr(Y \leq 1) \\
+        &=  \sum_{k=0}^1\comb{10}{k}(0.05)^k\brak{0.95}^{10-k} \\
+	&= 0.9138 
+	\label{eq:9371}
+\end{align} 
+Using Gaussian,
 Mean is given by
 \begin{align}
 	\mu &= np \\
@@ -110,14 +127,22 @@ We have,
 	Z &= \frac{X - \mu}{\sigma} \\
 	&= 1.451
 \end{align}
-Hence, from standard distribution table of $Z$, we have
 \begin{align}
-	\Pr(Z \leq 1.451) &= 0.9265\\
-	&= 92.65\%
+	\Pr(Z \leq 1.451) &= 1 - \Pr(Z > 1.451)\\
+	&= Q(1.4450)
 \end{align}
-\begin{figure}
+\begin{figure}[!ht]
 \includegraphics[width=\columnwidth]{./figs/fig.png}
-\caption{CDF of Z}
+\caption{Binomial pmf vs Gaussian pdf}
 \label{fig:gaussian/9/3/7/}
 \end{figure}
+From the plot, we have
+\begin{align}
+	\Pr(Z \leq 1.451) &= 0.9165
+	\label{eq:9372}
+\end{align}
+From \eqref{eq:9371} and \eqref{eq:9372},
+\begin{align}
+F_Y\brak{1}\approx \Pr(Z \leq 1.451)
+\end{align}
 \end{document}

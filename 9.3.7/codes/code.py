@@ -1,19 +1,23 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy.stats import norm
+from scipy.stats import binom, norm
 
-# Define the range of values for Z
-z_values = np.linspace(-3, 3, 1000)  # Choose an appropriate range
+n = 10  # Number of trials
+p = 0.05  # Probability of success (defective item)
+k = np.arange(0, n + 1)  # Possible number of defective items
+binomial_pmf = binom.pmf(k, n, p)
 
-# Calculate the CDF values for each Z value
-cdf_values = norm.cdf(z_values)
+mu = n * p  # Mean of the Gaussian distribution
+sigma = np.sqrt(n * p * (1 - p))  # Standard deviation of the Gaussian distribution
+x = np.linspace(0, n, 1000)
+normal_pdf = norm.pdf(x, mu, sigma)
 
-# Plot the CDF
-plt.plot(z_values, cdf_values)
-plt.xlabel('Z')
-plt.ylabel('CDF(Z)')
-plt.title('CDF of the Standard Normal Distribution')
+plt.stem(k, binomial_pmf, label='Binomial PMF', basefmt='b-')
+plt.plot(x, normal_pdf, label='Gaussian PDF', color='r')
+plt.xlabel('Number of Defective Items')
+plt.ylabel('Probability/Density')
+plt.legend()
 plt.grid(True)
 plt.savefig('../figs/fig.png')
-
+#plt.show()
 
