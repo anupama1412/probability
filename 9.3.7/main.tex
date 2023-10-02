@@ -87,20 +87,16 @@ that a sample of 10 items will include not more than one defective item?
     \hline
     $q$ & 0.95 & Probability of not being defective\\
     \hline
-    $X$ & 1 if defective & Bernoulli Random Variable\\
-    {} & 0 if not defective & {}\\
-    \hline
-    $Y$ & $\sum_{i=1}^nX_i$ & Binomial Random Variable\\
-    \hline
     $\mu = np$ & 0.5 & Mean\\
     \hline
     ${\sigma}^2 = npq$ & 0.475 & Variance\\
     \hline
 \end{tabular}
-\caption{Definition of parameters.}
+\caption{Definition of parameters and their values}
 \label{tab:gaussian/9/3/7}
 \end{table}
-
+\begin{enumerate}
+\item Binomial:
 The cdf using binomial is given by  
 \begin{align}
 	F_Y\brak{n} &= \Pr(Y \leq n) \\
@@ -112,57 +108,44 @@ We require $\Pr(Y \leq 1)$. Since $n = 1$,
         &=  \sum_{k=0}^1\comb{10}{k}(0.05)^k\brak{0.95}^{10-k} \\
 	&= 0.9138 
 	\label{eq:9371}
-\end{align} 
-The gaussian distribution function is defined as:
-\begin{align}
-p_Y\brak{x} &= \frac{1}{\sqrt{2\pi{\sigma}^2}} e^{-\frac{\brak{x-\mu}^2}{2{\sigma}^2}}\label{9.3.8} \qquad \brak{x \in Y}
 \end{align}
-So,
+\item Gaussian:
+$Y \sim \mathcal{N}\brak{\mu, \sigma^2}$\\
+To obtain cdf,
 \begin{align}
-p_Y\brak{0} &= \frac{1}{\sqrt{2\pi\brak{0.475}}} e^{-\frac{\brak{0 - 0.5}^2}{2\brak{0.475}}}\\
-		   &= \frac{1}{\sqrt{2\pi\brak{0.475}}} e^{-\frac{5}{19}}\\
-	           &= 0.4450
+\Pr(Y \leq 1) &= F_Y\brak{1}\\
+F_Y\brak{x} &= \Pr(Y \leq x)\\
+&= \Pr(Y - \mu \leq x - \mu)\\
+&= \Pr(\frac{Y - \mu}{\sigma} \leq \frac{x - \mu}{\sigma})\\
+&= 1 - \Pr(\frac{Y - \mu}{\sigma} > \frac{x - \mu}{\sigma})
 \end{align}
+We know that,
 \begin{align}
-p_Y\brak{1} &= \frac{1}{\sqrt{2\pi\brak{0.475}}} e^{-\frac{\brak{1 - 0.5}^2}{2\brak{0.475}}}\\
-		   &= \frac{1}{\sqrt{2\pi\brak{0.475}}} e^{-\frac{5}{19}}\\
-	           &= 0.4450
+\frac{Y - \mu}{\sigma} \sim \mathcal{N}\brak{0, 1}\\
+\Pr(X > x) &= \qfunc{x}
 \end{align}
-Hence required probability,
+Hence,
 \begin{align}
-	p_Y &= p_Y\brak{0} + p_Y\brak{1}\\
-	    &= 0.8901
-	    \label{eq:9372}
+F_Y\brak{x} &= 1 - \qfunc{\frac{x - \mu}{\sigma}}, \text{if $x > \mu$}\\
+&= \qfunc{\frac{\mu - x}{\sigma}}, \text{if $x < \mu$}\\
+\implies F_Y\brak{1} &= 1 - \qfunc{\frac{0.5}{\sqrt{0.475}}}\\
+&= 0.766
+\end{align}
+With correction of 0.5,
+\begin{align}
+\Pr(Y \leq 1.5) &= F_Y\brak{1.5}\\
+F_Y\brak{1.5} &= 1 - \qfunc{\frac{1}{\sqrt{0.475}}}\\
+&= 0.927
+\label{eq:9372}
 \end{align}
 From \eqref{eq:9371} and \eqref{eq:9372}
 \begin{align}
-F_Y\brak{1}\approx p_Y
+\Pr(Y \leq 1) \approx F_Y\brak{1.5}
 \end{align}
 \begin{figure}[!ht]
 \includegraphics[width=\columnwidth]{./figs/fig.png}
 \caption{Binomial pmf vs Gaussian pdf}
 \label{fig:gaussian/9/3/7/}
 \end{figure}
-Solving using Q function\\
-Q function is defined
-\begin{align}
-	\qfunc{x}=\int_x^{\infty}f\brak{x}dx
-\end{align}
-then CDF of $Y$ is:
-\begin{align}
-	\pr{Y<x}&=\int_{-\infty}^x f\brak{x} dx\\
-	&=1-\int_x^{\infty}f\brak{x}dx\\
-	&=1-\qfunc{x}
-\end{align}
-and for finding \pr{\frac{X-\mu}{\sigma}} Using approximation,
-\begin{align}
-	\pr{\frac{Y-\mu}{\sigma}} &\approx \pr{\frac{Y+0.5-\mu}{\sigma} < \frac{Y-\mu}{\sigma} < \frac{Y-0.5-\mu}{\sigma}}\\
-	&\approx \pr{\frac{Y-\mu}{\sigma}<\frac{Y+0.5-\mu}{\sigma}} - \pr{\frac{Y-\mu}{\sigma}<\frac{Y-0.5-\mu}{\sigma}}\\
-	&\approx \qfunc{\frac{Y-0.5-\mu}{\sigma}} - \qfunc{\frac{Y+0.5-\mu}{\sigma}}
-\end{align}
-\begin{align}
-Y &= 1\\
-\pr{Z=1.053} &\approx \qfunc{0} - \qfunc{1.45}\\
-	       &\approx 0.4265
-\end{align}
+\end{enumerate}
 \end{document}
