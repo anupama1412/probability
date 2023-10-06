@@ -94,6 +94,8 @@ where $\mu \in \mathbb{R}$ is an unknown parameter. If $\hat{M}$ is the maximum 
 \solution
 Let $\hat{M}$ = Maximum likelihood estimator of median of $X_1$ = m\\
 By definition,
+The median of a distribution is the value such that half of the probability mass of the distribution is below that value.\\
+Thus, for a function $f(x; \mu)$,
 \begin{align}
 \int_{\mu}^{m} f(x; \mu) \, dx &= \frac{1}{2} \\
 \implies \int_{\mu}^{m} e^{-(x-\mu)} \, dx &= \frac{1}{2} \\
@@ -106,12 +108,11 @@ Now,
 P(\hat{M} \leq y) &= P(\mu < y - \log_e 2)\\
 &= F(y - \log_e 2)
 \end{align}
-$X_i \sim exp(1)$\\
-$X_1 \sim exp(n)$\\
-Hence, using cdf,
+Using cdf,
 $F(X_1) = 1 - e^{-n(x - \mu)}$
 \begin{align}
-\implies P(\hat{M} \leq y) &= 1 - e^{-n(y - \log_e 2 - \mu)}
+\implies P(\hat{M} \leq y) &= F(y - \log_e 2)\\
+&= 1 - e^{-n(y - \log_e 2 - \mu)}
 \end{align}
 When $y = 2$ and $\mu = 1$,
 \begin{align}
