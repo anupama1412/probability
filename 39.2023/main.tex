@@ -121,9 +121,10 @@ Now, to calculate $P(\hat{M} \leq y)$,
 \begin{align}
 P(\hat{\mu} + \ln(2) \leq y) &= P(\hat{\mu} \leq y - \ln(2))
 \end{align}
-CDF of $\hat{\mu}$ is same as CDF of $\mu$, as MLE is biased estimator, so,
+CDF of $\hat{\mu}$ is same as CDF of $\mu$, as MLE is an unbiased estimator, so,
 \begin{align}
 F(\hat{\mu}) &= F(\mu)\\
+\text{As there are 'n' different samples}\\
 \implies P(\hat{M} \leq y) &= 1 - e^{-n(y-M)}
 \end{align}
 When $y = 2$ and $\mu = 1$,
