@@ -98,7 +98,7 @@ P(X \leq M) &= 0.5
 \end{align}
 The pdf of X is given by,
 \begin{align}
-f(x; \mu) =
+p_X(x) =
 \begin{cases}
 e^{-(x-\mu)}, & \text{if } \mu \leq x < \infty \\
 0, & \text{otherwise,} 
@@ -114,18 +114,32 @@ Now,
 \begin{align}
 F(x; \mu) &= 0.5\\
 \implies 1 - e^{-(M-\mu)} &= 0.5\\
-\implies M &= \mu + \ln(2)
+\implies \hat{M} &= \mu + \ln(2)
 \end{align}
-The MLE $\hat{M}$ of the median in a random sample is the middle value of the ordered sample. Since $M = \mu + \ln(2)$, the MLE of the median is $\hat{M} = \hat{\mu} + \ln(2)$, where $\hat{\mu}$ is the MLE of $\mu$.
-Now, to calculate $P(\hat{M} \leq y)$,
+L, the Maximum Likelihood Estimator of the distribution is given by,
 \begin{align}
-P(\hat{\mu} + \ln(2) \leq y) &= P(\hat{\mu} \leq y - \ln(2))
+L &= \prod e^{-(x-\mu)}\\
+&= e^{n\mu-\sum x_i}\\
+\log L &= n\mu - \sum x_i\\
+\frac{\partial {(\log L)}}{\partial \mu} &= 0\\
+\implies n &= 0 \text{ (Not possible)}\\
 \end{align}
-CDF of $\hat{\mu}$ is same as CDF of $\mu$, as MLE is an unbiased estimator, so,
+Hence L is maximum when $\mu$ is maximum.
 \begin{align}
-F(\hat{\mu}) &= F(\mu)\\
-\text{As there are 'n' different samples}\\
-\implies P(\hat{M} \leq y) &= 1 - e^{-n(y-M)}
+\mu &= min(X_1, X_2,....)\\
+&= X_1 
+\end{align}
+Thus,
+\begin{align}
+\hat{M} &= X_1 + \ln(2)\\
+P(\hat{M} \leq y) &= P(X_1 \leq y-\ln(2))\\
+&= F(y-\ln(2))
+\end{align}
+Using exponential distribution,
+\begin{align}
+f(X_1) &= ne^{-n(x-\mu)}\\
+F(X_1) &= 1-e^{-n(x-\mu)}\\
+\implies F(y-\ln(2)) &= 1-e^{-n(y-\ln(2)-\mu)}
 \end{align}
 When $y = 2$ and $\mu = 1$,
 \begin{align}
