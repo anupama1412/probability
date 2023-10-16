@@ -1,11 +1,30 @@
 \documentclass[]{article}
 \usepackage{amsfonts, amssymb}
 \usepackage{amsmath}
+\usepackage{amsthm}
 \usepackage{mathtools}
 \usepackage{algorithmic}
 \usepackage{float}
 \usepackage{graphicx}
 \usepackage{enumitem}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{problem}{Problem}
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{example}{Example}[section]
+\newtheorem{definition}[problem]{Definition}
+%\newtheorem{thm}{Theorem}[section] 
+%\newtheorem{defn}[thm]{Definition}
+%\newtheorem{algorithm}{Algorithm}[section]
+%\newtheorem{cor}{Corollary}
+\newcommand{\BEQA}{\begin{eqnarray}}
+\newcommand{\EEQA}{\end{eqnarray}}
+\newcommand{\define}{\stackrel{\triangle}{=}}
+\theoremstyle{remark}
+\newtheorem{rem}{Remark}
+%\bibliographystyle{ieeetr}
 
 \title{Question 39.2023}
 \author{Anupama Kulshreshtha \\ EE22BTECH11009}
@@ -116,14 +135,16 @@ F(x; \mu) &= 0.5\\
 \implies 1 - e^{-(M-\mu)} &= 0.5\\
 \implies \hat{M} &= \mu + \ln(2)
 \end{align}
+\begin{definition}
 L, the Maximum Likelihood Estimator of the distribution is given by,
 \begin{align}
 L &= \prod e^{-(x-\mu)}\\
 &= e^{n\mu-\sum x_i}\\
 \log L &= n\mu - \sum x_i\\
 \frac{\partial {(\log L)}}{\partial \mu} &= 0\\
-\implies n &= 0 \text{ (Not possible)}\\
+\implies n &= 0 \text{ (Not possible)}
 \end{align}
+\end{definition}
 Hence L is maximum when $\mu$ is maximum.
 \begin{align}
 \mu &= min(X_1, X_2,....)\\
