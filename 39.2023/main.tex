@@ -122,6 +122,7 @@ p_X(x) =
 e^{-(x-\mu)}, & \text{if } \mu \leq x < \infty \\
 0, & \text{otherwise,} 
 \end{cases}
+\label{eq:391}
 \end{align}
 Hence, cdf is given by
 \begin{align}
@@ -134,32 +135,44 @@ Now,
 F(x; \mu) &= 0.5\\
 \implies 1 - e^{-(M-\mu)} &= 0.5\\
 \implies \hat{M} &= \mu + \ln(2)
+\label{eq:39}
 \end{align}
 \begin{definition}
 L, the Maximum Likelihood Estimator of the distribution is given by,
 \begin{align}
 L &= \prod e^{-(x-\mu)}\\
-&= e^{n\mu-\sum x_i}\\
-\log L &= n\mu - \sum x_i\\
-\frac{\partial {(\log L)}}{\partial \mu} &= 0\\
-\implies n &= 0 \text{ (Not possible)}
+&= e^{-(\sum x_i-n\mu)}\\
 \end{align}
 \end{definition}
-Hence L is maximum when $\mu$ is maximum.
+For the Likelihood function to be maximum,
+$\sum x_i-n\mu$ should be minimum
+Hence,
 \begin{align}
-\mu &= min(X_1, X_2,....)\\
-&= X_1 
+X_i > \mu\\
+\implies \sum x_i > n\mu\\
+\sum x_i-n\mu > 0\\
+\implies \mu &= \frac{\sum x_i}{n}
+\end{align}
+Substituting this in (\ref{eq:39}),
+\begin{align}
+\hat{M} &= \frac{\sum x_i}{n} + \ln(2)
 \end{align}
 Thus,
 \begin{align}
-\hat{M} &= X_1 + \ln(2)\\
-P(\hat{M} \leq y) &= P(X_1 \leq y-\ln(2))\\
+P(\hat{M} \leq y) &= P(\frac{\sum x_i}{n} + \ln(2) \leq y)\\
+&= P(X + \ln(2) \leq y)\\
+&= P(X \leq y - \ln(2))\\
 &= F(y-\ln(2))
 \end{align}
-Using exponential distribution,
+From (\ref{eq:391}),
+$X_i$ follows Exp(1),\\
+$X_1$ follows Exp($\sum X_i$) \\
+$X_1$ follows Exp(n)\\
+Hence,
 \begin{align}
+f(X_i) &= e^{-(x-\mu)}\\
 f(X_1) &= ne^{-n(x-\mu)}\\
-F(X_1) &= 1-e^{-n(x-\mu)}\\
+\implies F(X_1) &= 1-e^{-n(x-\mu)}\\
 \implies F(y-\ln(2)) &= 1-e^{-n(y-\ln(2)-\mu)}
 \end{align}
 When $y = 2$ and $\mu = 1$,
