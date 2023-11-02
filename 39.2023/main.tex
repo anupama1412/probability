@@ -156,32 +156,40 @@ X_i > \mu\\
 Given,
 \begin{align}
 p_X(x) &= e^{-(x-\mu)}\\
-&= e^{-(x-\frac{\sum x_i}{n})}
 \end{align}
-Let
+$X_i$ follows an exponential distribution.
+\begin{definition}
+We know that if,
 \begin{align}
-Y = g(x) &= \frac{\sum x_i}{n}\\
-g^{-1}(x) &= nx
+p_X(x) &= \lambda_ie^{-\lambda_ix}\\
+S &= X_1 + X_2 +..... +X_n\\
+p_S(n) &= \frac{\lambda^nx^{n-1}e^{-\lambda x}}{(n-1)!}
 \end{align}
-To find pdf of y,
+which is gamma distribution with parameters n and $\lambda$
+\end{definition}
+Hence, pdf of 
 \begin{align}
-p_Y(x) &= p_X(g^{-1}(x)) \lvert \frac{d}{dx} g^{-1}(x) \lvert \\
-&= e^{-(nx-\frac{n \sum x_i}{n})} \lvert n \lvert \\
-&= ne^{-n(x-\frac{\sum x_i}{n})}\\
-&= ne^{-n(x-\mu)}\\
-\implies f_Y(x) &= 1-e^{-n(x-\mu)}
+Y &= \sum_{i=1}^{n} x_i\\
+\text{where,}\\
+p_X(x) &= e^{-(x-\mu)}
 \end{align}
+will follow gamma distribution with parameter n and $\lambda = 1$, given by,
+\begin{align}
+p_Y(x;n,1) &= \frac{x^{n-1}e^{-x}}{(n-1)!}
+\end{align}
+Hence, cdf is given by,
+\begin{align}
+f_Y(x;n) &= \int_{1}^{x} \frac{t^{n-1}e^{-t}}{(n-1)!} \,dt \\
+&= 1 - \Gamma(n,x)
+\end{align}
+where $\Gamma(n,x)$ is incomplete gamma function.
 Thus,
 \begin{align}
 P(\hat{M} \leq k) &= P(\frac{\sum x_i}{n} + \ln(2) \leq k)\\
-&= P(Y + \ln(2) \leq k)\\
-&= P(Y \leq k - \ln(2))\\
-&= f_Y(k-\ln(2))\\
-&= 1-e^{-n(y-\ln(2)-\mu)}
+&= P(Y/n + \ln(2) \leq k)\\
+&= P(Y \leq n(k - \ln(2)))\\
+&= f_Y(n(k-\ln(2)))\\
+&= 1 - \Gamma(n,n(k-ln2))
 \end{align}
-When $y = 2$ and $\mu = 1$,
-\begin{align}
-P(\hat{M} \leq 2) &= 1 - e^{-n(1 - \log_e 2)}
-\end{align}
-Therefore, option (A) is correct.
+It needs a value of n to be computed.
 \end{document}
