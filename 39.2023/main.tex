@@ -97,7 +97,7 @@
 
 Let $X_1$, $X_2$, ... , $X_n$ be a random sample of size $n$ from a population having probability density function
 \begin{align}
-f(x; \mu) =
+p_X(x; \mu) =
 \begin{cases}
 e^{-(x-\mu)}, & \text{if } \mu \leq x < \infty \\
 0, & \text{otherwise,} 
@@ -126,13 +126,13 @@ e^{-(x-\mu)}, & \text{if } \mu \leq x < \infty \\
 \end{align}
 Hence, cdf is given by
 \begin{align}
-F(x; \mu) &= \int_{\mu}^{x} e^{-(t-\mu)}dt\\ 
+f_X(x; \mu) &= \int_{\mu}^{x} e^{-(t-\mu)}dt\\ 
 &= e^{\mu}[-e^{-x} + e^{-\mu}]\\
 &= 1 - e^{-(x-\mu)}
 \end{align}
 Now,
 \begin{align}
-F(x; \mu) &= 0.5\\
+f_X(x; \mu) &= 0.5\\
 \implies 1 - e^{-(M-\mu)} &= 0.5\\
 \implies \hat{M} &= \mu + \ln(2)
 \label{eq:39}
@@ -201,9 +201,10 @@ It needs a value of n to be computed.
 Steps for simulation in C:
 \begin{enumerate}
 \item Import the necessary libraries, including 'stdio.h','stdlib.h' and 'math.h'.
-\item Define the Gamma cdf function using 2 parameters, x, input value, and n shape parameter.
+\item The uniform random function generates a random uniform variable.
+\item The gamma cdf function calculates the cdf for a gamma distribution with parameters alpha and beta.
 \item In the main function, variables are declared and initialized.
-\item Inside the loop, 'gammaCDF' function is called with current 'x' value, scaled by 'n', to calculate corresponding gamma CDF.
+\item Inside the loop, code performs simulations to verify the gamma cdf by generating a uniform random variable for comparison followed by gamma distribution .If the simulated value is less than or equal to gamma CDF, the variable is incremented
 \item The code is then compiled using GCC compiler in the terminal (gcc simulation.c -o simulation -lm), and the results are stored in an output.txt file. (./simulation$>$output.txt)
 \item The output file is loaded, and the final graph is plotted using python.
 \end{enumerate}

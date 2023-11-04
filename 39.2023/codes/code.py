@@ -1,31 +1,35 @@
-import matplotlib.pyplot as plt
+import math
 import numpy as np
+import matplotlib.pyplot as plt
 
-# Function to calculate theoretical gamma CDF
-def theoretical_gamma_cdf(x, n):
-    result = 1
-    for i in range(1, n):
-        result *= x / i
-    return 1 - np.exp(-x) * result
+# Function to calculate theoretical Gamma CDF values
+def gamma_cdf(x, alpha, beta):
+    return 1 - math.exp(-pow(x / beta, alpha))
 
-# Read simulated data from a file (replace 'simulation_data.txt' with the actual filename)
+# Parameters
+alpha = 2.0
+beta = 0.5
+start_x = 0.1
+end_x = 5.0
+step = 0.1
+
+# Generate x values
+x_values = np.arange(start_x, end_x + step, step)
+
+# Calculate theoretical Gamma CDF values
+theoretical_cdf_values = [gamma_cdf(x, alpha, beta) for x in x_values]
+
+# Read simulated empirical probabilities from the C code output
 data = np.loadtxt('output.txt')
-x_values = data[:, 0]
-simulated_probs = data[:, 1]
+simulated_probabilities = data
 
-# Define the shape parameter 'n'
-n = 5  # You can change this value according to your requirement
-
-# Calculate theoretical CDF values for the given 'n'
-theoretical_probs = [theoretical_gamma_cdf(n * x, n) for x in x_values]
-
-# Plotting
+# Plot theoretical vs simulated Gamma CDF
 plt.figure(figsize=(8, 6))
-plt.plot(x_values, theoretical_probs, label='Theoretical CDF')
-plt.scatter(x_values, simulated_probs, color='r', label='Simulated Probability', marker='o')
+plt.plot(x_values, theoretical_cdf_values, label='Theoretical Gamma CDF', color='blue', linewidth=2)
+plt.plot(x_values, simulated_probabilities, label='Simulated Gamma CDF', color='red', marker='o', linestyle='None', markersize=5)
 plt.xlabel('x')
-plt.ylabel('CDF')
-plt.title('Theoretical vs. Simulated Gamma CDF')
+plt.ylabel('CDF Value')
+plt.title('Theoretical vs Simulated Gamma CDF')
 plt.legend()
 plt.grid(True)
 plt.show()

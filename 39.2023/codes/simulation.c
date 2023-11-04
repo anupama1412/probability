@@ -2,32 +2,45 @@
 #include <stdlib.h>
 #include <math.h>
 
-double gammaCDF(double x, int n) {
-    double result = 1;
-    for (int i = 1; i <= n - 1; ++i) {
-        result *= x / i;
-    }
-    double cdf = 1 - exp(-x) * result;
-    // Ensure CDF is between 0 and 1
-    if (cdf < 0) {
-        return 0;
-    } else if (cdf > 1) {
-        return 1;
-    }
-    return cdf;
+// Function to generate Gamma CDF from uniform random variable
+double gamma_cdf(double x, double alpha, double beta) {
+    return 1 - exp(-pow(x / beta, alpha));
+}
+
+// Function to generate random uniform variable between 0 and 1
+double uniform_random() {
+    return (double)rand() / RAND_MAX;
 }
 
 int main() {
-    int n = 5; // Shape parameter
-    int numPoints = 100; // Number of points for the graph
-    double start = 0.1; // Start value for x
-    double end = 5.0; // End value for x
-    double step = (end - start) / numPoints; // Step size
+    int num_simulations = 100000; // Number of simulations
+    double alpha = 2.0; // Shape parameter of Gamma distribution
+    double beta = 0.5; // Scale parameter of Gamma distribution
+    double start_x = 0.1; // Start value of x
+    double end_x = 5.0; // End value of x
+    double step = 0.1; // Step size for x values
 
-    // Calculate and store CDF values for a range of input values
-    for (double x = start; x <= end; x += step) {
-        double cdf = gammaCDF(n * x, n);
-        printf("%lf %lf\n", x, cdf); // Print x and corresponding CDF value
+    // Seed for random number generation
+    srand(1234);
+
+    // Loop over different x values
+    for (double x = start_x; x <= end_x; x += step) {
+        int count = 0;
+
+        // Verify Gamma CDF through simulation
+        for (int i = 0; i < num_simulations; ++i) {
+            double gamma_cdf_value = gamma_cdf(x, alpha, beta); // Calculate Gamma CDF value
+            double simulated_value = (double)rand() / RAND_MAX; // Generate uniform random variable for comparison
+
+            // Check if simulated value falls below Gamma CDF value
+            if (simulated_value <= gamma_cdf_value) {
+                count++;
+            }
+        }
+
+        // Calculate and print the empirical probability
+        double empirical_probability = (double)count / num_simulations;
+        printf("%f\n", empirical_probability);
     }
 
     return 0;
