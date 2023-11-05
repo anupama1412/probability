@@ -126,13 +126,13 @@ e^{-(x-\mu)}, & \text{if } \mu \leq x < \infty \\
 \end{align}
 Hence, cdf is given by
 \begin{align}
-f_X(x; \mu) &= \int_{\mu}^{x} e^{-(t-\mu)}dt\\ 
+F_X(x; \mu) &= \int_{\mu}^{x} e^{-(t-\mu)}dt\\ 
 &= e^{\mu}[-e^{-x} + e^{-\mu}]\\
 &= 1 - e^{-(x-\mu)}
 \end{align}
 Now,
 \begin{align}
-f_X(x; \mu) &= 0.5\\
+F_X(x; \mu) &= 0.5\\
 \implies 1 - e^{-(M-\mu)} &= 0.5\\
 \implies \hat{M} &= \mu + \ln(2)
 \label{eq:39}
@@ -179,7 +179,7 @@ p_Y(x;n,1) &= \frac{x^{n-1}e^{-x}}{(n-1)!}
 \end{align}
 Hence, cdf is given by,
 \begin{align}
-f_Y(x;n) &= \int_{1}^{x} \frac{t^{n-1}e^{-t}}{(n-1)!} \,dt \\
+F_Y(x;n) &= \int_{1}^{x} \frac{t^{n-1}e^{-t}}{(n-1)!} \,dt \\
 &= 1 - \Gamma(n,x)
 \end{align}
 where $\Gamma(n,x)$ is incomplete gamma function.
@@ -188,7 +188,7 @@ Thus,
 \pr{\hat{M} \leq k} &= \pr{\frac{\sum x_i}{n} + \ln(2) \leq k}\\
 &= \pr{Y/n + \ln(2) \leq k}\\
 &= \pr{Y \leq n(k - \ln(2))}\\
-&= f_Y(n(k-\ln(2)))\\
+&= F_Y(n(k-\ln(2)))\\
 &= 1 - \Gamma(n,n(k-ln2))
 \end{align}
 It needs a value of n to be computed.
@@ -201,11 +201,11 @@ It needs a value of n to be computed.
 Steps for simulation in C:
 \begin{enumerate}
 \item Import the necessary libraries, including 'stdio.h','stdlib.h' and 'math.h'.
-\item The uniform random function generates a random uniform variable.
-\item The gamma cdf function calculates the cdf for a gamma distribution with parameters alpha and beta.
-\item In the main function, variables are declared and initialized.
-\item Inside the loop, code performs simulations to verify the gamma cdf by generating a uniform random variable for comparison followed by gamma distribution .If the simulated value is less than or equal to gamma CDF, the variable is incremented
+\item Write functions for generating exponential distribution, gamma pdf and gamma cdf.
+\item In the main function, the exponentials generated using the function are added and stored in variable 'gamma samples' for each sample, to get sum of exponentials.
+\item Then the simulated gamma cdf values are calculated using 'gamma cdf' function and the calculated sum of exponentials.
 \item The code is then compiled using GCC compiler in the terminal (gcc simulation.c -o simulation -lm), and the results are stored in an output.txt file. (./simulation$>$output.txt)
-\item The output file is loaded, and the final graph is plotted using python.
+\item The output file is loaded into the python code with theoretical cdf values, and the final graph between theoretical and simulated cdf is plotted.
+\item The simulated and theoretical cdf values match, which verifies the gamma cdf through simulation.
 \end{enumerate}
 \end{document}
